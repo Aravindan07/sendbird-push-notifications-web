@@ -34,16 +34,9 @@ onBackgroundMessage(messaging, (payload) => {
   const notificationTitle = payload.data.message;
   const notificationOptions = {
     body: "hello guys",
-    icon: "/firebase-logo.png",
   };
   self.registration
-    .showNotification(notificationTitle, notificationOptions, {
-      webpush: {
-        fcm_options: {
-          link: "https://leap.club",
-        },
-      },
-    })
+    .showNotification(notificationTitle, notificationOptions)
     .then(() => {
       console.log("notificationTitle", notificationTitle);
       console.log("Notification Complete");
@@ -60,16 +53,9 @@ onMessage(messaging, (payload) => {
   const notificationTitle = payload.data.message;
   const notificationOptions = {
     body: "hello guys",
-    icon: "/firebase-logo.png",
   };
   self.registration
-    .showNotification(notificationTitle, notificationOptions, {
-      webpush: {
-        fcm_options: {
-          link: "https://leap.club",
-        },
-      },
-    })
+    .showNotification(notificationTitle, notificationOptions)
     .then(() => {
       console.log("notificationTitle", notificationTitle);
       console.log("Notification Complete");
@@ -77,8 +63,4 @@ onMessage(messaging, (payload) => {
     .catch((error) => {
       console.log(error);
     });
-  self.onnotificationclick = function (event) {
-    //This event never happens
-    console.log("Clicou");
-  };
 });
