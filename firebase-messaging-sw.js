@@ -1,4 +1,5 @@
 import { initializeApp } from "firebase/app";
+import { onMessage } from "firebase/messaging";
 import { getMessaging, onBackgroundMessage } from "firebase/messaging/sw";
 
 /*
@@ -36,13 +37,48 @@ onBackgroundMessage(messaging, (payload) => {
     icon: "/firebase-logo.png",
   };
   self.registration
-    .showNotification(notificationTitle, notificationOptions)
+    .showNotification(notificationTitle, notificationOptions, {
+      webpush: {
+        fcm_options: {
+          link: "https://leap.club",
+        },
+      },
+    })
     .then(() => {
       console.log("notificationTitle", notificationTitle);
       console.log("Notification Complete");
-      window.open("https://leap.club", "_blank").focus();
     })
     .catch((error) => {
       console.log(error);
     });
+});
+
+onMessage(messaging, (payload) => {
+  console.log("[firebase-messaging-sw.js] Received message ", payload);
+
+  // Customize notification here
+  const notificationTitle = payload.data.message;
+  const notificationOptions = {
+    body: "hello guys",
+    icon: "/firebase-logo.png",
+  };
+  self.registration
+    .showNotification(notificationTitle, notificationOptions, {
+      webpush: {
+        fcm_options: {
+          link: "https://leap.club",
+        },
+      },
+    })
+    .then(() => {
+      console.log("notificationTitle", notificationTitle);
+      console.log("Notification Complete");
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+  self.onnotificationclick = function (event) {
+    //This event never happens
+    console.log("Clicou");
+  };
 });
