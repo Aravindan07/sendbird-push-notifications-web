@@ -38,7 +38,9 @@ onBackgroundMessage(messaging, (payload) => {
   self.registration
     .showNotification(notificationTitle, notificationOptions)
     .then(() => {
+      console.log("notificationTitle", notificationTitle);
       console.log("Notification Complete");
+      window.open("https://leap.club", "_blank").focus();
     })
     .catch((error) => {
       console.log(error);
