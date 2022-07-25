@@ -46,7 +46,7 @@ onBackgroundMessage(messaging, (payload) => {
     });
 
   self.addEventListener("notificationclick", function (event) {
-    let url = "https://example.com/some-path/";
+    let url = "https://zippy-sprinkles-eb2f5d.netlify.app/";
     event.notification.close(); // Android needs explicit close.
     event.waitUntil(
       clients.matchAll({ type: "window" }).then((windowClients) => {
@@ -86,7 +86,7 @@ onMessage(messaging, (payload) => {
     });
 
   self.addEventListener("notificationclick", function (event) {
-    let url = "https://example.com/some-path/";
+    let url = "https://zippy-sprinkles-eb2f5d.netlify.app/";
     event.notification.close(); // Android needs explicit close.
     event.waitUntil(
       clients.matchAll({ type: "window" }).then((windowClients) => {
